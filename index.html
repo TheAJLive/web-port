@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game Launcher</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .game {
+      background: #222;
+      padding: 0.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .game:hover {
+      background: #333;
+    }
+    .game img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    iframe {
+      width: 90%;
+      height: 600px;
+      margin-top: 2rem;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Click a game to play</h1>
+
+  <div class="grid" id="games">
+    <!-- Game tiles go here -->
+  </div>
+
+  <iframe id="gameframe"></iframe>
+
+  <script>
+    const games = [
+      { folder: 'balatro', name: 'Balatro', img: 'https://via.placeholder.com/160x160?text=Balatro' },
+      { folder: 'bendy', name: 'Bendy', img: 'https://via.placeholder.com/160x160?text=Bendy' },
+      { folder: 'buckshot-roulette', name: 'Buckshot Roulette', img: 'https://via.placeholder.com/160x160?text=Buckshot' },
+      { folder: 'class-of-09', name: 'Class of 09', img: 'https://via.placeholder.com/160x160?text=Class+of+09' },
+      { folder: 'donottakethiscathome', name: 'Don\'t Take This Cat Home', img: 'https://via.placeholder.com/160x160?text=Cat+Game' },
+      { folder: 'hotline-miami', name: 'Hotline Miami', img: 'https://via.placeholder.com/160x160?text=Hotline' },
+      { folder: 'people-playground', name: 'People Playground', img: 'https://via.placeholder.com/160x160?text=Playground' },
+      { folder: 'pizza-tower', name: 'Pizza Tower', img: 'https://via.placeholder.com/160x160?text=Pizza+Tower' },
+      { folder: 'speed-stars', name: 'Speed Stars', img: 'https://via.placeholder.com/160x160?text=Speed+Stars' },
+      { folder: 'thats-not-my-neighbor', name: 'Not My Neighbor', img: 'https://via.placeholder.com/160x160?text=Neighbor' },
+      { folder: 'ultrakill', name: 'Ultrakill', img: 'https://via.placeholder.com/160x160?text=Ultrakill' },
+    ];
+
+    const grid = document.getElementById('games');
+    games.forEach(game => {
+      const div = document.createElement('div');
+      div.className = 'game';
+      div.innerHTML = `
+        <img src="${game.img}" alt="${game.name}">
+        <div>${game.name}</div>
+      `;
+      div.onclick = () => {
+        document.getElementById('gameframe').src = `${game.folder}/index.html`;
+      };
+      grid.appendChild(div);
+    });
+  </script>
+
+</body>
+</html>
